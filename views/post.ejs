@@ -1,0 +1,11 @@
+<%- include header.ejs %>
+<form method="post" class="form-inline">
+    标题：<br />
+    <input type="text" name="title" class="form-control"/><br />
+    标签：<br />
+    <input type="text" name="tag1" class="form-control" /><input type="text" name="tag2" class="form-control" /><input type="text" name="tag3" class="form-control" /><br />
+    正文：<br />
+    <textarea name="post" rows="20" cols="100" class="form-control"></textarea><br />
+    <input type="submit" value="发表" class="btn btn-success"/>
+</form>
+<%- include footer.ejs %>
