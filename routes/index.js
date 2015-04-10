@@ -10,6 +10,9 @@ var crypto = require('crypto'),
     Post = require('../controllers/post_controller.js'),
     Comment = require('../models/comment.js');
 
+//引入包装MD5加密组件
+var md5 = require('../lib/md5.js');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -101,15 +104,16 @@ router.get('/login', function(req, res){
 router.post('/login', checkNotLogin);
 router.post('/login', function(req, res){
   //生成密码的 md5 值
-  var md5 = crypto.createHash('md5');
-      password = md5.update(req.body.password).digest('hex');
+ // var md5 = crypto.createHash('md5');
+      //password = md5.update(req.body.password).digest('hex');
+    var password = req.body.password;
   User.get(req.body.name, function(err, user){
       if(!user){
         req.flash('error', '用户不存在！');
         return res.redirect('/login');//跳转到登陆页面，让重新登陆
       }
     //检查输入的密码是否一致
-    if(user.password != password){
+    if(user.password != md5(password)){
       req.flash('error', '密码输入错误！');
       return res.redirect('/login');
     }
