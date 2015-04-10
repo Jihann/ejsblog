@@ -1,5 +1,5 @@
 /**
- * Created by JBH on 2015/3/25.
+ * Created by JBH on 2015/04/10.
  */
 
 var date = new Date();
@@ -36,6 +36,7 @@ console.log(isFinite(float));
 var result = formatNumber(0, 2);
 console.log(result);
 
+// test js 闭包特性
 (function(){
     function Foo(){
         var i=0;
