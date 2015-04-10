@@ -6,6 +6,7 @@ var mongodb = require('./../config/db'),
     markdown = require('markdown').markdown;
 
 var ObjectID = require('mongodb').ObjectID;
+//封装model
 var Post = require('./../models/post');
 
 //获取数据对象模型
