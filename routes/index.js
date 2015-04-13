@@ -5,10 +5,14 @@
 var express = require('express');
 var router = express.Router();
 
-var crypto = require('crypto'),
-    User = require('../controllers/user_controller.js'),
-    Post = require('../controllers/post_controller.js'),
-    Comment = require('../models/comment.js');
+//var crypto = require('crypto'),
+   // User = require('../controllers/user_controller.js'),
+   // Post = require('../controllers/post_controller.js'),
+   // Comment = require('../models/comment.js');
+
+var User = require('../controllers/user_controller.js');
+var Post = require('../controllers/post_controller.js');
+var Comment = require('../models/comment.js');
 
 //引入包装MD5加密组件
 var md5 = require('../lib/md5.js');
@@ -51,18 +55,23 @@ router.get('/reg', function(req, res){
 });
 
 //注册POST
+//对代码进行标准化优化
 router.post('/reg', checkNotLogin);
 router.post('/reg', function(req, res){
-  var name = req.body.name,
-      password = req.body.password,
-      password_re = req.body['password-repeat'];
+  //var name = req.body.name,
+     // password = req.body.password,
+      //password_re = req.body['password-repeat'];
+  var name = req.body.name;//用户名
+  var password = req.body.password;//密码
+  var password_re = req.body['password-repeat'];//确认密码
   if(password_re != password){
-    req.flash('error', '两次输入的密码不一致！');
+    req.flash('error', '两次输入的密码不一致哎！');
     return res.redirect('/reg');//返回注册页
   }
   //生成密码的 md5 值
-  var md5 = crypto.createHash('md5'),
-      password = md5.update(req.body.password).digest('hex');
+  //var md5 = crypto.createHash('md5'),
+     // password = md5.update(req.body.password).digest('hex');
+  password = md5(password);
   var newUser = new User({
     name: name,
     password: password,
@@ -350,9 +359,10 @@ router.post('/p/:_id', function(req, res){
       time = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +
               date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
   //留言属性
-  var md5 = crypto.createHash('md5'),
-      email_MD5 = md5.update(req.body.email.toLowerCase()).digest('hex'),
-      head = "http://www.gravatar.com/avatar/" + email_MD5 + "?s=48";
+  //var md5 = crypto.createHash('md5'),
+      //email_MD5 = md5.update(req.body.email.toLowerCase()).digest('hex'),
+   var  email_MD5 = md5(req.body.email.toLowerCase()),
+        head = "http://www.gravatar.com/avatar/" + email_MD5 + "?s=48";
   var comment = {
     name: req.body.name,
     head: head,
