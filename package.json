@@ -19,6 +19,7 @@
     "mongodb": "1.4.15",
     "morgan": "~1.5.1",
     "multer": "0.1.6",
-    "serve-favicon": "~2.2.0"
+    "serve-favicon": "~2.2.0",
+    "async": "*"
   }
 }
