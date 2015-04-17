@@ -1,5 +1,6 @@
 /**
  * Created by JBH on 2015/4/17
+ * 采用Async异步模块编程
  */
 var async = require('async');
 var username = "Jihann";
