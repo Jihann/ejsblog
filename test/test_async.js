@@ -4,18 +4,18 @@
  */
 var async = require('async');
 var username = "Jihann";
-var email = "XXX@XXX.com";
+var hobby = "The fall of the year";
 
 //waterfall(tasks, [callback])
 async.waterfall([
     function(callback) {
-        callback(null, username, email);
+        callback(null, username, hobby);
     },
-    function(username, email, callback) {
+    function(username, hobby, callback) {
         console.log("-------------- info message start --------------");
         console.log("-------------username: " + username);
-        console.log("-------------email: " +email);
-        var userInfo = "hello " + username + ",this is my email: " + email;
+        console.log("-------------hobby: " +hobby);
+        var userInfo = "hello " + username + ",this is my hobby: " + hobby;
         callback(null, userInfo);
     },
     function(userInfo, callback) {
