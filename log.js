@@ -6,16 +6,17 @@ log4js.configure({
    appenders : [
        {
            type : 'console'
-       }, //控制台输出
+       },
+       // 定义一个日志记录器
        {
             type : 'file',
-            filename : 'logs/ejsblog.log',
+            filename : 'weblogs/ejsblog.log',
             maxLogSize: 1024,
             backups: 3,
             category: 'normal'
        }
    ],
-    replaceConsole: true   //替换console.log
+    replaceConsole: true
 });
 
 //配置
