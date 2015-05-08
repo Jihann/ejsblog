@@ -17,13 +17,19 @@ var Comment = require('../models/comment.js');
 //引入包装MD5加密组件
 var md5 = require('../lib/md5.js');
 
+//导入log4js
+var logger = require('../log').logger;
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  logger.info('-------------------- welcome node express --------------------');
+  console.log('------------------- this is my ejsblog --------------------');
   res.render('index', { title: 'Express' });
 });
 
 /* GET index page */
 router.get('/index', function(req, res){
+  logger.info('----------------- 进入首页 ---------------');
   //判断是否是第一页，并把请求的页数转换成 number 类型
   var page = req.query.p ? parseInt(req.query.p) : 1;
   Post.getTen(null, page, function (err, posts, total) {
