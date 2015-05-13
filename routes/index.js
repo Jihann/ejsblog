@@ -19,6 +19,7 @@ var md5 = require('../lib/md5.js');
 
 //导入log4js
 var logger = require('../log').logger;
+var colors = require('../colors');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -52,6 +53,7 @@ router.get('/index', function(req, res){
 //注册GET
 router.get('/reg', checkNotLogin);
 router.get('/reg', function(req, res){
+  console.log('----------------register-------------'.green);
   res.render('register', {
     title: 'register',
     user: req.session.user,
@@ -71,6 +73,8 @@ router.post('/reg', function(req, res){
   var password = req.body.password;//密码
   var password_re = req.body['password-repeat'];//确认密码
   if(password_re != password){
+    //设置控制台提示颜色
+    console.log('------------两次输入的密码不一致哎！-------------'.error);
     req.flash('error', '两次输入的密码不一致哎！');
     return res.redirect('/reg');//返回注册页
   }
