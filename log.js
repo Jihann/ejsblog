@@ -23,7 +23,6 @@ log4js.configure({
 var logger = log4js.getLogger('normal');
 logger.setLevel('INFO');
 
-//导出
 exports.logger = logger;
 exports.use = function(app) {
   app.use(log4js.connectLogger(logger, {level: log4js.levels.INFO, format:':method :url'}));
